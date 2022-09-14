@@ -39,12 +39,14 @@ const typeController = (e) => {
     }
 
     userText += newLetter;
+    // errorCount+=
 
     const newLetterCorrect = validate(newLetter);
 
     if (newLetterCorrect) {
         display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
     } else {
+        errorCount++;
         display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
     }
 
@@ -73,11 +75,13 @@ const gameOver = () => {
     resultModal.innerHTML = "";
     resultModal.classList.toggle("hidden");
     modalBackground.classList.toggle("hidden");
+
     // clear user text
     display.innerHTML = "";
     // make it inactive
     display.classList.add("inactive");
-    // show result
+    console.log(errorCount)
+        // show result
     resultModal.innerHTML += `
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
